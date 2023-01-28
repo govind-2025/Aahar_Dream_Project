@@ -1,0 +1,69 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Manage City</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">City</a></li>
+                            <li class="breadcrumb-item"><a href="">Manage City</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Manage City</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="ml-5">S.No.</th>
+                                    <th>State Name</th>
+                                    <th>City Name</th>
+                                    <th>Creation Date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in city %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.state.StateName}}</td>
+                                    <td>{{i.CityName}}</td>
+                                    <td>{{i.CreationDate}}</td>
+                                    <td><a href="{% url 'editCity' i.id %}" class="text-primary">Edit</a> |
+                                        <a href="{% url 'deleteCity' i.id %}" class="text-danger"
+                                           onclick="return confirm('Are You Sure?')">Delete</a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ basic-table ] end -->
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

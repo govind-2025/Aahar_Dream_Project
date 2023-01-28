@@ -1,0 +1,69 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">All Listed Food</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Listed Food</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>All Listed Food Requests</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="ml-5">S.No.</th>
+                                    <th>Food Id</th>
+                                    <th>Register By</th>
+                                    <th>Reg. Mobile No.</th>
+                                    <th>Contact Person Name</th>
+                                    <th>Contact Person Mob No.</th>
+                                    <th>Food Items</th>
+                                    <th>Request Date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in food %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.foodId}}</td>
+                                    <td>{{i.donorid.user.first_name}} {{i.donorid.user.last_name}}</td>
+                                    <td>{{i.donorid.MobileNumber}}</td>
+                                    <td>{{i.ContactPerson}}</td>
+                                    <td>{{i.CPMobNumber}}</td>
+                                    <td>{{i.FoodItems}}</td>
+                                    <td>{{i.CreationDate}}</td>
+                                    <td><a href="{% url 'foodDetails' i.id %}" class="text-primary">View Details</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

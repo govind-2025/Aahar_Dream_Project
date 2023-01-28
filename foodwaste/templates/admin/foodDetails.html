@@ -1,0 +1,91 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Listed Food Details</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Listed Food Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Listed Food Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th>Register By</th>
+                                    <td>{{food.donorid.user.first_name}} {{food.donorid.user.last_name}}</td>
+
+                                    <th>Registered Mobile Number</th>
+                                    <td>{{food.donorid.MobileNumber}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Registred Email</th>
+                                    <td>{{food.donorid.user.username}}</td>
+
+                                    <th>Contact Person</th>
+                                    <td>{{food.ContactPerson}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Contact Person Moible Number</th>
+                                    <td>{{food.CPMobNumber}}</td>
+
+                                    <th>State Name</th>
+                                    <td>{{food.city.state.StateName}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>City Name</th>
+                                    <td>{{food.city.CityName}}</td>
+
+                                    <th>Pick Up Date</th>
+                                    <td>{{food.PickupDate}}</td>
+
+                                </tr>
+
+                                <tr>
+                                    <th>PickUp Address</th>
+                                    <td>{{food.PickupAddress}}</td>
+
+                                    <th>Image</th>
+                                    <td><img src="{{food.Image.url}}" style="width: 100%; height: 100px;"></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Description</th>
+                                    <td colspan="4">{{food.Description}}</td>
+                                </tr>
+
+                                <tr>
+
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,168 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Dashboard</h5>
+                        </div>
+                        <ul class="breadcrumb mt-5">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                <a href="{% url 'newRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalnewrequest}}</h3>
+                                <h6 class="text-muted m-b-0">New Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart6" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                <a href="{% url 'rejectRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalrejectrequest}}</h3>
+                                <h6 class="text-muted m-b-0">Rejected Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart7" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                <a href="{% url 'completeRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalcompleterequest}}</h3>
+                                <h6 class="text-muted m-b-0">Complete Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart8" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                <a href="{% url 'allRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalrequest}}</h3>
+                                <h6 class="text-muted m-b-0">All Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart5" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-12">
+                <div class="card">
+                    <a href="{% url 'manageState' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalstate}}</h3>
+                                <h6 class="text-muted m-b-0">Total State </h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart1" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                    <a href="{% url 'manageCity' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalcity}}</h3>
+                                <h6 class="text-muted m-b-0">Total City</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart2" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                    <a href="{% url 'regFoodDonor' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totaldonor}}</h3>
+                                <h6 class="text-muted m-b-0">Total Food Donor</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart3" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                <a href="{% url 'listedFood' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalfood}}</h3>
+                                <h6 class="text-muted m-b-0">Total Listed Food</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart4" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

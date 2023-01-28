@@ -1,0 +1,73 @@
+{% extends 'navbar.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Contact</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Get In Touch</p>
+            <h2>Contact for any query</h2>
+        </div>
+        <div class="contact-img">
+            <img src="{% static 'img/contact.jpg' %}" alt="Image">
+        </div>
+        <div class="contact-form">
+            <div id="success"></div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="control-group">
+                    <input type="text" name="fullName" class="form-control" placeholder="Your Name" required>
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="text" name="Phone" class="form-control" placeholder="Your Mobile Number" required maxlength="10">
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="email" name="Email" class="form-control" id="email" placeholder="Your Email" required="required">
+                </div>
+                <div class="control-group mt-2">
+                    <textarea name="Message" class="form-control" placeholder="Message" required></textarea>
+
+                </div>
+                <div>
+                    <button class="btn btn-custom mt-3" type="submit">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% if error == "no" %}
+<script>
+    alert('Your Message has been Send Successfully.');
+    window.location=('{% url 'index' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong. Try Again...');
+</script>
+{% endif %}
+
+
+{% endblock %}

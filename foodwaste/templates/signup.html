@@ -1,0 +1,93 @@
+{% extends 'navbar.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Donor Signup</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'donor_login' %}">Donor Login</a>
+                <a href="{% url 'signup' %}">Donor Signup</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Signup Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Donor Login</h2>
+        </div>
+        <div class="contact-img">
+            <img src="{% static 'img/contact.jpg' %}" alt="Image">
+        </div>
+        <div class="contact-form">
+            <div id="success"></div>
+            <form method="post" name="signup" onsubmit="return checkpass();">
+                {% csrf_token %}
+
+                <div class="control-group">
+                    <input type="text" name="firstName" class="form-control" placeholder="Enter First Name" required>
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="text" name="lastName" class="form-control" placeholder="Enter Last Name" required>
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="text" name="MobileNumber" class="form-control" placeholder="Enter Mobile Number" maxlength="10" required>
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="email" name="Email" class="form-control" placeholder="Enter EmailId" required>
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="password" name="Password" class="form-control" placeholder="Enter Password" required>
+                </div>
+
+                <div class="control-group mt-2">
+                    <input type="password" name="cpwd" class="form-control" placeholder="Enter Confirm Password" required>
+                </div>
+
+                <div>
+                    <button class="btn btn-custom mt-3" type="submit">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Signup End -->
+<script>
+    function checkpass()
+    {
+      if(document.signup.Password.value!=document.signup.cpwd.value){
+        alert('Password and Confirm Password field does not match');
+        document.signup.cpwd.focus();
+        return false;
+      }
+      return true;
+    }
+</script>
+
+{% if error == "no" %}
+<script>
+    alert('Registration Successfully.');
+    window.location=('{% url 'donor_login' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong. Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

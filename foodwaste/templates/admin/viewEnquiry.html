@@ -1,0 +1,62 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Enquiry Details</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Enquiry Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Enquiry Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{contact.fullName}}</td>
+
+                                    <th>Email</th>
+                                    <td>{{contact.Email}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Contact No</th>
+                                    <td>{{contact.Phone}}</td>
+
+                                    <th>Enquiry Date</th>
+                                    <td>{{contact.EnquiryDate}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Message</th>
+                                    <td colspan="4">{{contact.Message}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

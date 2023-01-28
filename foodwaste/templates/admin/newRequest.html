@@ -1,0 +1,74 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">New Request</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Request</a></li>
+                            <li class="breadcrumb-item"><a href="">New Request</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>New Request</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="ml-5">S.No.</th>
+                                    <th>Request Id</th>
+                                    <th>Request By</th>
+                                    <th>Requester Mob No.</th>
+                                    <th>Food Item</th>
+                                    <th>Request Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in foodrequest %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.requestNumber}}</td>
+                                    <td>{{i.fullName}}</td>
+                                    <td>{{i.mobileNumber}}</td>
+                                    <td>{{i.food.FoodItems}}</td>
+                                    <td>{{i.requestDate}}</td>
+
+                                    {% if i.status == None%}
+                                    <td>Not Update Yet</td>
+                                    {% else %}
+                                    <td>{{i.status}}</td>
+                                    {% endif %}
+                                    <td><a href="{% url 'view_requestDtls' i.id %}" class="text-primary">View Details</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

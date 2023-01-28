@@ -1,0 +1,118 @@
+{% extends 'donorNavbar.html' %}
+{% load static %}
+{% block main %}
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Dashboard</h5>
+                        </div>
+                        <ul class="breadcrumb mt-5">
+                            <li class="breadcrumb-item"><a href="{% url 'donorDashboard' %}"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- seo start -->
+            <div class="col-xl-4 col-md-12">
+                <div class="card">
+                    <a href="{% url 'manageFood' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalfoodlist}}</h3>
+                                <h6 class="text-muted m-b-0">Total Listed Food </h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart1" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                    <a href="{% url 'donorCompletedRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalcomreq}}</h3>
+                                <h6 class="text-muted m-b-0">Food Take Away/Completed</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart2" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                     <a href="{% url 'donorRejectRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalrejectreq}}</h3>
+                                <h6 class="text-muted m-b-0">Rejected Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart3" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                     <a href="{% url 'donorAllRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalallreq}}</h3>
+                                <h6 class="text-muted m-b-0">All Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart4" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                     <a href="{% url 'donorNewRequest' %}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h3>{{totalnewreq}}</h3>
+                                <h6 class="text-muted m-b-0">New Request</h6>
+                            </div>
+                            <div class="col-6">
+                                <div id="seo-chart5" class="d-flex align-items-end"></div>
+                            </div>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <!-- seo end -->
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

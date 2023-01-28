@@ -1,0 +1,128 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">View Request Details</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">View Request Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>View Request Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+
+                                <tr>
+                                    <th colspan="4" style="text-align: center; color: red; font-size: 15px;">View Request Details of : {{foodrequest.requestNumber}}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Register By</th>
+                                    <td>{{foodrequest.food.donorid.user.first_name}} {{foodrequest.food.donorid.user.last_name}}</td>
+
+                                    <th>Registred Mobile Number</th>
+                                    <td>{{foodrequest.food.donorid.MobileNumber}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Registred Email</th>
+                                    <td>{{foodrequest.food.donorid.user.username}}</td>
+
+                                    <th>Contact Person</th>
+                                    <td>{{foodrequest.food.ContactPerson}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Contact Person Mobile Number</th>
+                                    <td>{{foodrequest.food.CPMobNumber}}</td>
+
+                                    <th>State Name</th>
+                                    <td>{{foodrequest.food.city.state.StateName}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>City Name</th>
+                                    <td>{{foodrequest.food.city.CityName}}</td>
+
+                                    <th>Description</th>
+                                    <td>{{foodrequest.food.Description}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Pick Up Date</th>
+                                    <td>{{foodrequest.food.PickupDate}}</td>
+
+                                    <th>Pick Up Address</th>
+                                    <td>{{foodrequest.food.PickupAddress}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Image</th>
+                                    <td><img src="{{foodrequest.food.Image.url}}" style="width: 100%; height: 100px;"></td>
+
+                                    <th>Status</th>
+                                    {% if foodrequest.status == None %}
+                                    <td>Not Update Yet</td>
+                                    {% else %}
+                                    <td>{{foodrequest.status}}</td>
+                                    {% endif %}
+                                </tr>
+
+                                <tr>
+                                    <th colspan="4" style="text-align:center;color:blue;font-size:20px;">Requested By
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Requested By</th>
+                                    <td>{{foodrequest.fullName}}</td>
+
+                                    <th>Requester Mobile No.</th>
+                                    <td>{{foodrequest.mobileNumber}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Message</th>
+                                    <td>{{foodrequest.message}}</td>
+
+                                    <th>Request Date</th>
+                                    <td>{{foodrequest.requestDate}}</td>
+                                </tr>
+
+                                {% if foodrequest.donorRemark is not None%}
+                                <tr>
+                                    <th>Donar Remark</th>
+                                    <td>{{foodrequest.donorRemark}}</td>
+
+                                    <th>Remark Date</th>
+                                    <td>{{foodrequest.requestCompletionDate}}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

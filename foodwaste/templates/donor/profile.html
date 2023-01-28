@@ -1,0 +1,88 @@
+{% extends 'donorNavbar.html' %}
+{% load static %}
+{% block main %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Update Profile</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'donorDashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+
+        <!-- [ Main Content ] start -->
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Update Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>First Name</label>
+                                    <input type="text" name="firstName" value="{{donor.user.first_name}}" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Last Name</label>
+                                    <input type="text" name="lastName" value="{{donor.user.last_name}}" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" value="{{donor.user.username}}" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input type="text" name="MobileNumber" value="{{donor.MobileNumber}}" class="form-control" maxlength="10">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Registration Date</label>
+                                <input type="text" name="RegDate" value="{{donor.RegDate}}" class="form-control" readonly>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+	   alert('Profile Has been Updated');
+	   window.location=('{% url 'donorDashboard' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	    alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+
+{% endblock %}

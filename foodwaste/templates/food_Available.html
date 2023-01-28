@@ -1,0 +1,76 @@
+{% extends 'navbar.html' %}
+{% block main %}
+{% load static %}
+{%load custom_tag %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Food Available List</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'food_Available' %}">Food Available List</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Signup Start -->
+<div class="food">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Food Available List</h2>
+        </div>
+        <div class="food-img">
+            <img src="{% static 'img/contact.jpg' %}" alt="Image">
+        </div>
+        <div class="food-form" style="width: 100%">
+            <div id="success"></div>
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Contact Person</th>
+                    {% comment %} <th>Contact Person No.</th> {% endcomment %}
+                    <th>Food Items</th>
+                    <th>Address</th>
+                    <th>State Name</th>
+                    <th>City Name</th>
+                    {% comment %} <th>Creation Date</th> {% endcomment %}
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% with serial_counter=0  checker=false %}
+                    {% for i in food %}
+                        <tr>
+                            {% checkdate i.CreationDate as checker %}
+                            {% if i.foodrequests_set.all.0.status != 'Food Take Away/ Request Completed' and checker %}
+                                {% update_variable serial_counter as serial_counter %}
+                                <td>{{serial_counter}}</td>
+                                <td>{{i.ContactPerson}}</td>
+                                {% comment %} <td>{{i.CPMobNumber}}</td> {% endcomment %}
+                                <td>{{i.FoodItems}}</td>
+                                <td>{{i.PickupAddress}}</td>
+                                <td>{{i.city.state.StateName}}</td>
+                                <td>{{i.city.CityName}}</td>
+                                {% comment %} <td>{{i.CreationDate}}</td> {% endcomment %}
+                                <td><a href="{% url 'checkFoodAvailable' i.id %}" class="text-primary">View</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                {% endwith %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Signup End -->
+
+
+{% endblock %}

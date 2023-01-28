@@ -1,0 +1,215 @@
+{% load static %}
+{% load custom_tag %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Waste Management System</title>
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded"/>
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body class="">
+
+<div class="loader-bg">
+    <div class="loader-track">
+        <div class="loader-fill"></div>
+    </div>
+</div>
+
+<nav class="pcoded-navbar  ">
+    <div class="navbar-wrapper  ">
+        <div class="navbar-content scroll-div ">
+
+            <div class="">
+                <div class="main-menu-header">
+                    <img class="img-radius" src="{% static 'assets/images/user/avatar-2.png' %}" alt="User-Profile-Image">
+                    <div class="user-details">
+                        <span>{{request.user.email}}</span>
+                        <div id="more-details">Admin<i class="fa fa-chevron-down m-l-5"></i></div>
+                    </div>
+                </div>
+                <div class="collapse" id="nav-user-link">
+                    <ul class="list-unstyled">
+                        <li class="list-group-item"><a href="{% url 'changePassword' %}"><i class="feather icon-settings m-r-5"></i>Change Password</a>
+                        </li>
+                        <li class="list-group-item"><a href="/logout"><i
+                                class="feather icon-log-out m-r-5"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <ul class="nav pcoded-inner-navbar ">
+                <li class="nav-item">
+                    <a href="{% url 'dashboard' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span
+                            class="pcoded-mtext">Dashboard</span></a>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span
+                            class="pcoded-mtext">State</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{% url 'addState' %}">Add State</a></li>
+                        <li><a href="{% url 'manageState' %}">Manage State</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span
+                            class="pcoded-mtext">City</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{% url 'addCity' %}">Add City</a></li>
+                        <li><a href="{% url 'manageCity' %}">Manage City</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'regFoodDonor' %}" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-layout"></i></span><span class="pcoded-mtext">Reg Food Donor</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'listedFood' %}" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-layout"></i></span><span class="pcoded-mtext">Listed Food</span></a>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-box"></i></span><span class="pcoded-mtext">Food Request</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{% url 'newRequest' %}">New Request</a></li>
+                        <li><a href="{% url 'completeRequest' %}">Picked/Take Away/Completed</a></li>
+                        <li><a href="{% url 'rejectRequest' %}">Rejected Request</a></li>
+                        <li><a href="{% url 'allRequest' %}">All Request</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span
+                            class="pcoded-mtext">Enquiry</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{% url 'unreadEnquiry' %}">Unread Enquiry</a></li>
+                        <li><a href="{% url 'readEnquiry' %}">Read Enquiry</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span
+                            class="pcoded-mtext">Reports</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{% url 'reportDonatedFood' %}">Report of Donated Food</a></li>
+                        <li><a href="{% url 'reportregfoodDonor' %}">Report of Reg Food Donor</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'searchFood' %}" class="nav-link "><span class="pcoded-micon"><i
+                            class="feather icon-search"></i></span><span class="pcoded-mtext">Search Listed Food</span></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
+
+
+    <div class="m-header">
+        <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+        <a href="#!" class="b-brand">
+            <!-- ========   change your logo hear   ============ -->
+            <h2>FWMS</h2>
+            <img src="{% static 'assets/images/logo-icon.png' %}" alt="" class="logo-thumb">
+        </a>
+        <a href="#!" class="mob-toggler">
+            <i class="feather icon-more-vertical"></i>
+        </a>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="icon feather icon-bell"></i>
+                        <span class="badge badge-pill badge-danger">{% notificationcount %}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right notification">
+                        <div class="noti-head">
+                            <h6 class="d-inline-block m-b-0">Notifications</h6>
+                        </div>
+                        <ul class="noti-body">
+                            <li class="n-title">
+                                <p class="m-b-0">Your Received {% notificationcount %} New Request</p>
+                            </li>
+                            {% for i in ""|notification %}
+                            <li class="notification">
+                                <a href="{% url 'newRequest' %}">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p><strong>New Request Received from <span style="color: blue">{{i.fullName}}</span></strong></p>
+                                        <p style="color: red;">({{i.requestNumber}})</p>
+                                    </div>
+                                </div> </a>
+                            </li>
+                            {% empty %}
+                            <li style="text-align : center">No Records Found</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="dropdown drp-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="feather icon-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-notification">
+                        <div class="pro-head">
+                            <img src="{% static 'assets/images/user/avatar-2.png' %}" class="img-radius" alt="User-Profile-Image">
+                            <span>Admin</span>
+                            <a href="#" class="dud-logout" title="Logout">
+                                <i class="feather icon-log-out"></i>
+                            </a>
+                        </div>
+                        <ul class="pro-body">
+                            <li><a href="{% url 'changePassword' %}" class="dropdown-item"><i class="feather icon-settings"></i> Change Password</a></li>
+                            <li><a href="/logout" class="dropdown-item"><i class="feather icon-log-out"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+
+{% block main %}
+
+{% endblock %}
+
+<!-- Required Js -->
+<script src="{% static 'assets/js/vendor-all.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/pcoded.min.js' %}"></script>
+
+<!-- Apex Chart -->
+<script src="{% static 'assets/js/plugins/apexcharts.min.js' %}"></script>
+<!-- custom-chart js -->
+<script src="{% static 'assets/js/pages/dashboard-main.js' %}"></script>
+</body>
+</html>

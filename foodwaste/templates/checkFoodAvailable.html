@@ -1,0 +1,155 @@
+{% extends 'navbar.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Food Details</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Food Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Signup Start -->
+<div class="food">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Food Details</h2>
+        </div>
+        <div class="food-img">
+            <img src="{% static 'img/contact.jpg' %}" alt="Image">
+        </div>
+        <div class="food-form" style="width: 100%">
+            <div id="success"></div>
+            <table id="example" class="table table-bordered" style="width: 100%">
+
+                <tr>
+                {% comment %} we change this lines {% endcomment %}
+                    <th>Food Name</th>
+                    <td colspan=3>{{food.FoodItems}}
+                </tr>
+
+                <tr>
+                    <th>Registered By</th>
+                    <td>{{food.donorid.user.first_name}} {{food.donorid.user.last_name}}</td>
+
+                    <th>Registered Mobile Number</th>
+                    <td>{{food.donorid.MobileNumber}}</td>
+                </tr>
+
+                <tr>
+                    <th>Registred Email</th>
+                    <td>{{food.donorid.user.username}}</td>
+
+                    <th>Contact Person</th>
+                    <td>{{food.ContactPerson}}</td>
+                </tr>
+
+                <tr>
+                    {% comment %} <th>Contact Person Mobile Number</th>
+                    <td>{{food.CPMobNumber}}</td> {% endcomment %}
+
+                    <th>State Name</th>
+                    <td>{{food.city.state.StateName}}</td>
+
+                    <th>City Name</th>
+                    <td>{{food.city.CityName}}</td>
+                </tr>
+
+                <tr>
+                    <th>Description</th>
+                    <td colspan=3>{{food.Description}}</td>
+                </tr>
+
+                <tr>
+                    <th>Pick Up Date</th>
+                    <td>{{food.PickupDate}}</td>
+
+                    <th>Pick Up Address</th>
+                    <td>{{food.PickupAddress}}</td>
+                </tr>
+
+                <tr>
+                    <th>Image</th>
+                    <td><img src="{{food.Image.url}}" style="width: 100%; height: 150px;"></td>
+
+                    <th>Status</th>
+                    {% if i.foodrequests_set.all.0.status != 'Food Take Away/ Request Completed'%}
+                    <td>No Update Yet</td>
+                    {% else %}
+                    <td>{{food.foodrequests_set.all.0.status}}</td>
+                    {% endif %}
+                </tr>
+
+                {% if i.foodrequests_set.all.0.status != 'Food Take Away/ Request Completed' %}
+                <tr>
+                    <td colspan="4">
+                        <center>
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#myModal">Request Food
+                            </button>
+                        </center>
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Food Request</h4>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <p><input type="text" name="fullName" class="form-control" placeholder="Enter Full Name"
+                                      required></p>
+                            <p style="margin-top:1%"><input type="text" name="mobileNumber" class="form-control"
+                                                            placeholder="Enter Mobile Number" maxlength="10" required>
+                            </p>
+                            <p style="margin-top:1%"><textarea name="message" class="form-control"
+                                                               placeholder="Message if any" required></textarea></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signup End -->
+
+{% if error == "no" %}
+<script>
+    alert('Request Successfully Sent!! Your Request Number is {{requestNumber}}. You can reach out to {{food.ContactPerson}} at {{food.CPMobNumber}}');
+    window.location=('{% url 'food_Available' %}');
+
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong. Try Again...');
+
+</script>
+{% endif %}
+
+
+{% endblock %}

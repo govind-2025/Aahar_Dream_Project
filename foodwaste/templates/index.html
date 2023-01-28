@@ -1,0 +1,313 @@
+{% extends 'navbar.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Carousel Start -->
+<div class="carousel">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="{% static 'img/carousel-1.jpg' %}" alt="Image" style="height: 600px;">
+                </div>
+                <div class="carousel-text">
+                    <h1>Don't Waste Food,give it to other</h1>
+                    <p>
+                        Don't waste food because so many needy hands are waiting for it and sleeping with empty stomachs.
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn btn-custom" href="{% url 'donor_login' %}">Donate ( दान )</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="{% static 'img/carousel-2.jpg' %}" alt="Image" style="height: 600px;">
+                </div>
+                <div class="carousel-text">
+                    <h1>Help the Hungry People</h1>
+                    <p>
+                        There are poor and hungry people all around us. When you see the level and depth of suffering that's going on, then you have no reaction other than to help.
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn btn-custom" href="{% url 'donor_login' %}">Donate ( दान )</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="{% static 'img/carousel-3.jpg' %}" alt="Image" style="height: 600px;">
+                </div>
+                <div class="carousel-text">
+                    <h1>Bringing smiles to millions hunger people</h1>
+                    <p>
+                        We know that a peaceful world cannot exist for long with one-third being rich and two-thirds hungry.
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn btn-custom" href="{% url 'donor_login' %}">Donate ( दान )</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+<!-- Video Modal Start-->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always"
+                            allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Video Modal End -->
+
+
+<!-- About Start -->
+<div class="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about-img" data-parallax="scroll" data-image-src="{% static 'img/about.jpg' %}"></div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-header">
+                    <p>Learn About Us</p>
+                    <h2>All About Food Wastage</h2>
+                </div>
+                <div class="about-tab">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#tab-content-1">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#tab-content-2">Mission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#tab-content-3">Vision</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="tab-content-1" class="container tab-pane active">
+                            The problem of food waste is a relatively modern one. India is an ancient civilisation and
+                            we have been prudent about food for millennia. Our parents and grandparents, too, once
+                            approached food and cooking with the same prudence. Yet, somewhere along the way, we lost
+                            sight of this “waste not, want not” mentality.
+                        </div>
+                        <div id="tab-content-2" class="container tab-pane fade">
+                            There is also a significant amount of food waste generated in our homes. As per the Food
+                            Waste Index Report 2021, a staggering 50 kg of food is thrown away per person every year in
+                            Indian homes. This excess food waste usually ends up in landfills, creating potent
+                            greenhouse gases which have dire environmental implications. Meanwhile, we continue to be
+                            greenwashed into amassing more “organic” and “sustainable” products than we really need.
+                        </div>
+                        <div id="tab-content-3" class="container tab-pane fade">
+                            This has been a problem for decades, and is worsening with time. It was only when the
+                            COVID-19 pandemic came along in 2020 that many of us began taking note. Affluent Indians
+                            were suddenly inconvenienced by things otherwise taken for granted, like procuring groceries
+                            or worrying about how long their supplies would last. We came to realise that the food we
+                            eat goes far beyond the few bites it takes for us to finish it.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Service Start -->
+<div class="service">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>What We Do?</p>
+            <h2>We believe that we can save more lifes with you</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="flaticon-diet"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Healthy Food</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="flaticon-water"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Pure Water</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="flaticon-healthcare"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Health Care</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="flaticon-education"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Primary Education</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="flaticon-home"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Residence Facilities</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="flaticon-social-care"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Social Care</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+
+<!-- Facts Start -->
+<div class="facts" data-parallax="scroll" data-image-src="{% static 'img/facts.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="flaticon-home"></i>
+                    <div class="facts-text">
+                        <h3 class="facts-plus" data-toggle="counter-up">150</h3>
+                        <p>Countries</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="flaticon-charity"></i>
+                    <div class="facts-text">
+                        <h3 class="facts-plus" data-toggle="counter-up">400</h3>
+                        <p>Volunteers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="flaticon-kindness"></i>
+                    <div class="facts-text">
+                        <h3 class="facts-dollar" data-toggle="counter-up">10000</h3>
+                        <p>Our Goal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="facts-item">
+                    <i class="flaticon-donation"></i>
+                    <div class="facts-text">
+                        <h3 class="facts-dollar" data-toggle="counter-up">5000</h3>
+                        <p>Raised</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
+
+<!-- Blog Start -->
+<div class="blog">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Our Blog</p>
+            <h2>Latest news & articles directly from our blog</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="{% static 'img/blog-1.jpg' %}" alt="Image" style="height: 200px;">
+                    </div>
+                    <div class="blog-text">
+                        <h3><a href="#">Think Before your waste food</a></h3>
+                        <p>
+                            India has committed itself to fighting hunger at home and worldwide. This is an effort to
+                            spread awareness about food wastage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="{% static 'img/blog-2.jpg' %}" alt="Image" style="height: 200px;">
+                    </div>
+                    <div class="blog-text">
+                        <h3><a href="#">Battling Food Wastage and Hunger</a></h3>
+                        <p>
+                            Sometimes there are a few complications because of which food is wasted. Except for them,
+                            this is a very simple problem with colossal possibilities of simple solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="{% static 'img/blog-3.jpg' %}" alt="Image" style="height: 200px;">
+                    </div>
+                    <div class="blog-text">
+                        <h3><a href="#">Don't waste food Give it to others</a></h3>
+                        <p>
+                            Wasting food is not a good practice at all both for the economy and also to the environment
+                            or to our own ethical justification.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+
+{% endblock %}
+

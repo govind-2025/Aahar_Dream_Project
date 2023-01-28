@@ -1,0 +1,149 @@
+{% extends 'donorNavbar.html' %}
+{% load static %}
+{% block main %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Update Food</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'donorDashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">List Your Food Details</a></li>
+                            <li class="breadcrumb-item"><a href="">Update Food</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+
+        <!-- [ Main Content ] start -->
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Edit Food Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" id="FoodForm" data-city-url="{% url 'ajax_load_city' %}"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Food Item</label>
+                                    <input type="text" name="FoodItems" class="form-control" value="{{food.FoodItems}}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Description</label>
+                                    <textarea name="Description" class="form-control">{{food.Description}}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Pickup Date</label>
+                                    <input type="date" name="PickupDate" class="form-control"
+                                           value="{{food.PickupDate|date:'Y-m-d'}}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Pickup Address</label>
+                                    <input type="text" name="PickupAddress" class="form-control"
+                                           value="{{food.PickupAddress}}">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Choose State</label>
+                                    <select class="form-control" name="state" id="state">
+                                        <option value="{{food.city.state.id}}">{{food.city.state.StateName}}</option>
+                                        {% for i in state %}
+                                        <option value="{{i.id}}">{{i.StateName}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Choose City</label>
+                                    <select class="form-control" name="city" id="city" required>
+                                        <option value="{{food.city.id}}">{{food.city.CityName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Contact Person</label>
+                                    <input type="text" name="ContactPerson" class="form-control"
+                                           value="{{food.ContactPerson}}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Contact Person Mobile Number</label>
+                                    <input type="text" name="CPMobNumber" class="form-control"
+                                           value="{{food.CPMobNumber}}" maxlength="10">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Picture</label>
+                                    <input type="file" name="Image" class="form-control">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <img src="{{food.Image.url}}" name="Image" height="100" width="100">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+	   alert('Food has been Updated.');
+	   window.location=('{% url 'manageFood' %}');
+
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	    alert('Something went wrong, Try Again');
+
+</script>
+{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $('#state').change(function(){
+    var url = $('#FoodForm').attr("data-city-url"); //get the url of the 'load_category' view
+    var stateId = $(this).val(); //get the selected categoryid from the html input
+
+    $.ajax({    //initialize an AJAX request
+    url:url,    //set the url of the request(localhost:8000/load_subcategory)
+    data:{
+    'state':stateId //add the categoryid to the get parameters
+    },
+    success:function(data){//data is the return of the 'load_subcategory' view function
+    $('#city').html(data);
+    }
+    });
+    });
+
+</script>
+
+{% endblock %}

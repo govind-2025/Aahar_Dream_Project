@@ -1,0 +1,97 @@
+{% extends 'donorNavbar.html' %}
+{% load static %}
+{% block main %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Search</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'donorDashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Search</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+
+        <!-- [ Main Content ] start -->
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Search</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Search by Request Number/Requester Name/Requester No:</label>
+                                <input type="text" name="search" class="form-control"
+                                       placeholder="Enter Request Number/Requester Name/Requester No" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
+
+                    {% if foodrequest %}
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <h5 align="center">Result against "{{sd}}" keyword </h5>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="ml-5">S.No.</th>
+                                    <th>Request Id</th>
+                                    <th>Request By</th>
+                                    <th>Requester Mobile Number</th>
+                                    <th>Food Item</th>
+                                    <th>Request Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in foodrequest %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.requestNumber}}</td>
+                                    <td>{{i.fullName}}</td>
+                                    <td>{{i.mobileNumber}}</td>
+                                    <td>{{i.food.FoodItems}}</td>
+                                    <td>{{i.requestDate}}</td>
+
+                                    {% if i.status == None%}
+                                    <td>Not Update Yet</td>
+                                    {% else %}
+                                    <td>{{i.status}}</td>
+                                    {% endif %}
+                                    <td><a href="{% url 'viewRequestDetails' i.id %}" class="text-primary">View Details</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

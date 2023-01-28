@@ -1,0 +1,81 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Add City</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">City</a></li>
+                            <li class="breadcrumb-item"><a href="">Add City</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+
+        <!-- [ Main Content ] start -->
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add City</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>State</label>
+                                <select name="state" class="form-control">
+                                    <option value="">Select State</option>
+                                    {% for i in state %}
+                                    <option value="{{i.id}}">{{i.StateName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>City Name</label>
+                                <input type="text" name="CityName" class="form-control"
+                                       placeholder="Enter City Name" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+    alert('New City has been Added');
+    window.location=('{% url 'manageCity' %}');
+
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong. Try Again...');
+
+</script>
+{% endif %}
+
+{% endblock %}

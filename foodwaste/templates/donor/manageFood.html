@@ -1,0 +1,75 @@
+{% extends 'donorNavbar.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Manage Food</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'donorDashboard' %}"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">List Your Food Details</a></li>
+                            <li class="breadcrumb-item"><a href="">Manage Food</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Manage Food Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Food Id</th>
+                                        <th>Food Items</th>
+                                        <th>Contact Person</th>
+                                        <th>Mobile Number</th>
+                                        <th>State Name</th>
+                                        <th>City Name</th>
+                                        <th>Listing Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in food %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{i.foodId}}</td>
+                                        <td>{{i.FoodItems}}</td>
+                                        <td>{{i.ContactPerson}}</td>
+                                        <td>{{i.CPMobNumber}}</td>
+                                        <td>{{i.city.state.StateName}}</td>
+                                        <td>{{i.city.CityName}}</td>
+                                        <td>{{i.CreationDate}}</td>
+                                        <td><a href="{% url 'editFood' i.id %}" class="text-primary">Edit</a> |
+                                            <a href="{% url 'deleteFood' i.id %}" class="text-danger" onclick="return confirm('Are You Sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ basic-table ] end -->
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Reg. Food Donor</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Reg. Food Donor</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Food Donor Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="ml-5">S.No.</th>
+                                    <th>Full Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email</th>
+                                    <th>Registration Date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in donor %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                                    <td>{{i.MobileNumber}}</td>
+                                    <td>{{i.user.username}}</td>
+                                    <td>{{i.RegDate}}</td>
+                                    <td><a href="{% url 'deleteDonor' i.id %}" class="text-danger" onclick="return confirm('Are You Sure?')">Delete</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ basic-table ] end -->
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

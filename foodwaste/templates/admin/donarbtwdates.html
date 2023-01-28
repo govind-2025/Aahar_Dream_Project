@@ -1,0 +1,64 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Between Date Donor Report</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">Between Date Donor Report</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Between Date Donor Report Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <h5 align="center" style="color:blue">Report from <span style="color:red">{{fd}}</span> to
+                                <span style="color:red">{{td}}</span></h5>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="ml-5">S.No.</th>
+                                    <th>Full Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email</th>
+                                    <th>Registration Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in donor %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                                    <td>{{i.MobileNumber}}</td>
+                                    <td>{{i.user.username}}</td>
+                                    <td>{{i.RegDate}}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

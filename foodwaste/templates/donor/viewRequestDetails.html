@@ -1,0 +1,172 @@
+{% extends 'donorNavbar.html' %}
+{% load static %}
+{% block main %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">View Request Details</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'donorDashboard' %}"><i
+                                    class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="">View Request Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>View Request Details</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th colspan="4" style="text-align: center; color: red; font-size:20px;">View Request Details of : {{foodrequest.requestNumber}}</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Register By</th>
+                                    <td>{{foodrequest.food.donorid.user.first_name}}
+                                        {{foodrequest.food.donorid.user.last_name}}
+                                    </td>
+
+                                    <th>Registred Mobile Number</th>
+                                    <td>{{foodrequest.food.donorid.MobileNumber}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Registred Email</th>
+                                    <td>{{foodrequest.food.donorid.user.username}}</td>
+
+                                    <th>Contact Person</th>
+                                    <td>{{foodrequest.food.ContactPerson}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Contact Person Mobile Number</th>
+                                    <td>{{foodrequest.food.CPMobNumber}}</td>
+
+                                    <th>State Name</th>
+                                    <td>{{foodrequest.food.city.state.StateName}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>City Name</th>
+                                    <td>{{foodrequest.food.city.CityName}}</td>
+
+                                    <th>Description</th>
+                                    <td>{{foodrequest.food.Description}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Pick Up Date</th>
+                                    <td>{{foodrequest.food.PickupDate}}</td>
+
+                                    <th>Pick Up Address</th>
+                                    <td>{{foodrequest.food.PickupAddress}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Image</th>
+                                    <td><img src="{{foodrequest.food.Image.url}}" style="width: 100%; height: 100px;">
+                                    </td>
+
+                                    <th>Status</th>
+                                    {% if foodrequest.status == None %}
+                                    <td>Not Update Yet</td>
+                                    {% else %}
+                                    <td>{{foodrequest.status}}</td>
+                                    {% endif %}
+                                </tr>
+
+                                <tr>
+                                    <th colspan="4" style="text-align:center;color:blue;font-size:20px;">Requested By
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Requested By</th>
+                                    <td>{{foodrequest.fullName}}</td>
+
+                                    <th>Requester Mobile No.</th>
+                                    <td>{{foodrequest.mobileNumber}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Message</th>
+                                    <td>{{foodrequest.message}}</td>
+
+                                    <th>Request Date</th>
+                                    <td>{{foodrequest.requestDate}}</td>
+                                </tr>
+
+                                {% if foodrequest.donorRemark is not None%}
+                                <tr>
+                                    <th>Donar Remark</th>
+                                    <td>{{foodrequest.donorRemark}}</td>
+
+                                    <th>Remark Date</th>
+                                    <td>{{foodrequest.requestCompletionDate}}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+
+                            {% if foodrequest.status == None%}
+                            <table class="table">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <tr>
+                                        <th>Status :</th>
+                                        <td>
+                                            <select name="status" class="form-control wd-450" required="true">
+                                                <option value="">Select</option>
+                                                <option value="Food Take Away/ Request Completed">Food Take Away/ Request Completed</option>
+                                                <option value="Request Rejected">Request Rejected</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Remark :</th>
+                                        <td><textarea name="donorRemark" class="form-control" required></textarea></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td colspan="2">
+                                            <button type="submit" name="submit" class="btn btn-primary">Update</button>
+                                        </td>
+                                    </tr>
+                                </form>
+                            </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% if error ==  "no" %}
+<script>
+    alert('Remark & Status has been Updated.');
+    window.location=('{% url 'donorAllRequest' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong. Please try again');
+</script>
+{% endif %}
+
+{% endblock %}
